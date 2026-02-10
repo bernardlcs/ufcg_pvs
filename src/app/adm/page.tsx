@@ -60,7 +60,7 @@ export default async function AdminPage() {
                   <span className={`px-3 py-1 rounded-full text-xs font-bold ${
                     candidato.sorteado ? 'bg-blue-100 text-blue-700' : 'bg-zinc-100 text-zinc-500'
                   }`}>
-                    {candidato.sorteado ? 'Sorteado' : 'Não'}
+                    {candidato.sorteado ? 'Sim' : 'Não'}
                   </span>
                 </td>
               </tr>
