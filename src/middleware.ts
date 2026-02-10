@@ -1,10 +1,11 @@
 import { NextResponse, type NextRequest } from 'next/server';
-// O import abaixo agora aponta para o outro arquivo de middleware que você tem
 import { updateSession } from './utils/supabase/middleware'; 
 
 export async function middleware(request: NextRequest) {
-  // 1. Proteção de Senha para a rota /adm
-  if (request.nextUrl.pathname.startsWith('/adm') || request.nextUrl.pathname.startsWith('/sorteio') ) {
+  const { pathname } = request.nextUrl;
+
+  // 1. Verifica se a rota ATUAL deve ser protegida
+  if (pathname.startsWith('/adm') || pathname.startsWith('/sorteio')) {
     const authHeader = request.headers.get('authorization');
 
     if (!authHeader) {
@@ -16,22 +17,25 @@ export async function middleware(request: NextRequest) {
 
     const auth = Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':');
     
-    // Verifica usuário e senha do seu .env.local
     if (auth[0] !== process.env.ADMIN_USER || auth[1] !== process.env.ADMIN_PASSWORD) {
       return new NextResponse('Senha incorreta', {
         status: 401,
         headers: { 'WWW-Authenticate': 'Basic realm="Acesso PVS"' },
       });
     }
+    
+    // Se for ADM/Sorteio e a senha estiver correta, atualiza a sessão e segue
+    return await updateSession(request);
   }
 
-  // 2. Chama a função de sessão do Supabase
-  return await updateSession(request);
+  // 2. PARA TODAS AS OUTRAS ROTAS (Inscrição, Home, etc)
+  // Retorna direto sem passar pela verificação de senha ou processamento extra
+  return NextResponse.next();
 }
 
 export const config = {
   matcher: [
-    '/adm/:path*',     // Protege /adm e sub-páginas
-    '/sorteio/:path*', // Protege /sorteio e sub-páginas
+    '/adm/:path*',
+    '/sorteio/:path*',
   ],
 };
