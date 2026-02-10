@@ -32,7 +32,7 @@ export default function PVSForm2026() {
       window.scrollTo({ top: 0, behavior: 'smooth' })
       alert(`Inscrição realizada com sucesso! Guarde seu protocolo: #${result.protocolo}`);
     } else {
-      setMessage({ type: 'error', text: result.message })
+      setMessage({ type: 'error', text: result.message || "Ocorreu um erro inesperado." })
     }
     setLoading(false)
   }
