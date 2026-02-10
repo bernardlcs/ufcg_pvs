@@ -31,6 +31,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/adm/:path*',     // Protege /adm e sub-páginas
+    '/sorteio/:path*', // Protege /sorteio e sub-páginas
   ],
 };
