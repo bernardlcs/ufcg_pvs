@@ -21,7 +21,7 @@ export default function RootLayout({
             PVS 2026
           </Link>
           <div className="flex gap-6 items-center">
-            <Link href="/quem-somos" className="text-zinc-600 hover:text-blue-700 font-medium transition-colors">
+            <Link href="/quem_somos" className="text-zinc-600 hover:text-blue-700 font-medium transition-colors">
               Quem Somos
             </Link>
             <Link href="/adm" className="text-zinc-600 hover:text-blue-700 font-medium transition-colors">
