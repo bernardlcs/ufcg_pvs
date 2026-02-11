@@ -1,36 +1,25 @@
 import { NextResponse, type NextRequest } from 'next/server';
-import { updateSession } from './utils/supabase/middleware'; 
+import { updateSession } from './utils/supabase/middleware';
 
 export async function middleware(request: NextRequest) {
+  // 1. Atualiza a sessão e recupera o objeto de resposta
+  const response = await updateSession(request);
   const { pathname } = request.nextUrl;
 
-  // 1. Verifica se a rota ATUAL deve ser protegida
+  // 2. Proteção de rotas ADM e SORTEIO
   if (pathname.startsWith('/adm') || pathname.startsWith('/sorteio')) {
-    const authHeader = request.headers.get('authorization');
+    // Verificamos se existe o cookie de sessão do Supabase
+    // O Supabase Auth guarda o token em um cookie que começa com 'sb-'
+    const hasSession = request.cookies.getAll().some(c => c.name.includes('auth-token'));
 
-    if (!authHeader) {
-      return new NextResponse('Autenticação necessária', {
-        status: 401,
-        headers: { 'WWW-Authenticate': 'Basic realm="Acesso PVS"' },
-      });
+    if (!hasSession) {
+      // Se não houver sessão, redireciona para a página de login
+      const loginUrl = new URL('/login', request.url);
+      return NextResponse.redirect(loginUrl);
     }
-
-    const auth = Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':');
-    
-    if (auth[0] !== process.env.ADMIN_USER || auth[1] !== process.env.ADMIN_PASSWORD) {
-      return new NextResponse('Senha incorreta', {
-        status: 401,
-        headers: { 'WWW-Authenticate': 'Basic realm="Acesso PVS"' },
-      });
-    }
-    
-    // Se for ADM/Sorteio e a senha estiver correta, atualiza a sessão e segue
-    return await updateSession(request);
   }
 
-  // 2. PARA TODAS AS OUTRAS ROTAS (Inscrição, Home, etc)
-  // Retorna direto sem passar pela verificação de senha ou processamento extra
-  return NextResponse.next();
+  return response;
 }
 
 export const config = {
