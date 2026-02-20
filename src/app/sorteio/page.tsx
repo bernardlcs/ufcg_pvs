@@ -12,14 +12,24 @@ export default function SorteioPage() {
   const supabase = createClient();
 
   // Carrega candidatos ao iniciar
-  useEffect(() => {
-    async function fetchCandidatos() {
-      const { data } = await supabase.from('inscricoes').select('*');
-      if (data) setCandidatos(data);
-      setLoading(false);
+useEffect(() => {
+  async function fetchCandidatos() {
+    const { data, error } = await supabase
+      .from('inscricoes')
+      .select('*')
+      .order('ordem_sorteio', { ascending: false }); // Já traz ordenado do banco
+
+    if (data) {
+      setCandidatos(data);
+      
+      // Filtra quem já foi sorteado no banco e popula o estado 'sorteados'
+      const jaSorteados = data.filter(c => c.sorteado === true);
+      setSorteados(jaSorteados);
     }
-    fetchCandidatos();
-  }, []);
+    setLoading(false);
+  }
+  fetchCandidatos();
+}, []);
 
   const realizarSorteio = async () => {
      // 1. Filtra apenas quem ainda não foi sorteado localmente

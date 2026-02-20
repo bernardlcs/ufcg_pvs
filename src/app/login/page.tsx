@@ -24,7 +24,9 @@ export default function LoginPage() {
     if (error) {
       alert('Erro ao entrar: ' + error.message);
     } else {
-      router.push('/adm'); 
+      router.push('/adm');
+      router.refresh(); 
+      window.location.href = '/adm';
     }
   };
 
