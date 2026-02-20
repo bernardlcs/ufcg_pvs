@@ -2,6 +2,8 @@
 import { createClient } from '@/utils/supabase/server'; // Ajuste o caminho conforme seu projeto
 import { Users, Hash, Calendar, IdCard } from 'lucide-react';
 
+
+
 export default async function AdminPage() {
   const supabase = await createClient();
 
@@ -71,3 +73,5 @@ export default async function AdminPage() {
     </main>
   );
 }
+
+
