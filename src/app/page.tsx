@@ -15,7 +15,7 @@ export default function Home() {
         <Link href="/inscricao" className="flex items-center gap-2 bg-blue-700 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:scale-105 transition-all shadow-lg">
           <ClipboardCheck /> Fazer Inscrição
         </Link>
-        <Link href="/quem-somos" className="flex items-center gap-2 bg-white border-2 border-zinc-200 text-zinc-700 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-zinc-50 transition-all">
+        <Link href="/quem_somos" className="flex items-center gap-2 bg-white border-2 border-zinc-200 text-zinc-700 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-zinc-50 transition-all">
           <Info /> Quem Somos
         </Link>
       </div>
