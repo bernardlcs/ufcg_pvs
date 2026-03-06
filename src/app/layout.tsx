@@ -33,7 +33,7 @@ export default function RootLayout({
             <Link href="/consulta" className="text-zinc-600 hover:text-blue-700 font-medium transition-colors">
               Área do Candidato
             </Link>
-            <Link href="/inscricao" className="bg-blue-700 text-white px-5 py-2 rounded-full font-bold hover:bg-blue-800 transition-all shadow-md active:scale-95">
+            <Link href="/encerradas" className="bg-blue-700 text-white px-5 py-2 rounded-full font-bold hover:bg-blue-800 transition-all shadow-md active:scale-95">
               Fazer Inscrição
             </Link>
             
@@ -62,7 +62,7 @@ export default function RootLayout({
               <h4 className="font-bold text-zinc-100 uppercase text-xs tracking-widest">Acesso Rápido</h4>
               <ul className="flex flex-col gap-2 text-sm text-zinc-400">
                 <li><Link href="/" className="hover:text-blue-400 transition-colors">Página Inicial</Link></li>
-                <li><Link href="/inscricao" className="hover:text-blue-400 transition-colors">Formulário de Inscrição</Link></li>
+                <li><Link href="/encerradas" className="hover:text-blue-400 transition-colors">Formulário de Inscrição</Link></li>
                 <li><Link href="/quem_somos" className="hover:text-blue-400 transition-colors">Sobre o Projeto</Link></li>
               </ul>
             </div>
