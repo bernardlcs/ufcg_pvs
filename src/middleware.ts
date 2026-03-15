@@ -7,7 +7,7 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // 2. Proteção de rotas ADM e SORTEIO
-  if (pathname.startsWith('/adm') || pathname.startsWith('/sorteio')) {
+  if (pathname.startsWith('/adm') || pathname.startsWith('/sorteio') || pathname.startsWith('/consulta_admin')) {
     // Verificamos se existe o cookie de sessão do Supabase
     // O Supabase Auth guarda o token em um cookie que começa com 'sb-'
     const hasSession = request.cookies.getAll().some(c => c.name.includes('auth-token'));
@@ -26,5 +26,6 @@ export const config = {
   matcher: [
     '/adm/:path*',
     '/sorteio/:path*',
+    '/consulta_admin:path*'
   ],
 };

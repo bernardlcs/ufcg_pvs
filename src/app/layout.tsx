@@ -27,8 +27,8 @@ export default function RootLayout({
             <Link href="/adm" className="text-zinc-600 hover:text-blue-700 font-medium transition-colors">
               Administração
             </Link>
-            <Link href="/sorteio" className="text-zinc-600 hover:text-blue-700 font-medium transition-colors">
-              Sorteio
+            <Link href="/consulta_admin" className="text-zinc-600 hover:text-blue-700 font-medium transition-colors">
+              Candidatos
             </Link>
             <Link href="/consulta" className="text-zinc-600 hover:text-blue-700 font-medium transition-colors">
               Área do Candidato
@@ -46,40 +46,49 @@ export default function RootLayout({
         </div>
 
         {/* Rodapé Institucional (Footer) */}
-        <footer className="bg-zinc-900 text-white py-12 px-6 border-t border-zinc-800">
-          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
-            {/* Coluna 1: Logo/Nome */}
-            <div className="space-y-4">
-              <h3 className="text-xl font-black tracking-tighter text-blue-400">PVS 2026</h3>
-              <p className="text-zinc-400 text-sm leading-relaxed">
-                Pré-Vestibular Solidário da UFCG.<br />
-                Preparando jovens da rede pública para o futuro acadêmico desde 2002.
-              </p>
-            </div>
+{/* Mudança: bg-zinc-900 (preto) para bg-blue-700 (azul institucional) */}
+<footer className="bg-blue-700 text-white py-12 px-6 border-t border-blue-800">
+  <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+    
+    {/* Coluna 1: Logo/Nome */}
+    <div className="space-y-4">
+      {/* Mudança: text-blue-400 para text-white para destacar no fundo azul */}
+      <h3 className="text-xl font-black tracking-tighter text-white">PVS 2026</h3>
+      {/* Mudança: text-zinc-400 para text-blue-100 para melhor leitura */}
+      <p className="text-blue-100 text-sm leading-relaxed">
+        Pré-Vestibular Solidário da UFCG.<br />
+        Preparando jovens da rede pública para o futuro acadêmico desde 2002.
+      </p>
+    </div>
 
-            {/* Coluna 2: Links Rápidos */}
-            <div className="space-y-4">
-              <h4 className="font-bold text-zinc-100 uppercase text-xs tracking-widest">Acesso Rápido</h4>
-              <ul className="flex flex-col gap-2 text-sm text-zinc-400">
-                <li><Link href="/" className="hover:text-blue-400 transition-colors">Página Inicial</Link></li>
-                <li><Link href="/encerradas" className="hover:text-blue-400 transition-colors">Formulário de Inscrição</Link></li>
-                <li><Link href="/quem_somos" className="hover:text-blue-400 transition-colors">Sobre o Projeto</Link></li>
-              </ul>
-            </div>
+    {/* Coluna 2: Links Rápidos */}
+    <div className="space-y-4">
+      {/* Mudança: text-zinc-100 para text-white */}
+      <h4 className="font-bold text-white uppercase text-xs tracking-widest">Acesso Rápido</h4>
+      {/* Mudança: text-zinc-400 para text-blue-100, hover:text-blue-400 para hover:text-white */}
+      <ul className="flex flex-col gap-2 text-sm text-blue-100">
+        <li><Link href="/" className="hover:text-white transition-colors">Página Inicial</Link></li>
+        <li><Link href="/encerradas" className="hover:text-white transition-colors">Formulário de Inscrição</Link></li>
+        <li><Link href="/quem_somos" className="hover:text-white transition-colors">Sobre o Projeto</Link></li>
+      </ul>
+    </div>
 
-            {/* Coluna 3: Contato/UFCG */}
-            <div className="space-y-4">
-              <h4 className="font-bold text-zinc-100 uppercase text-xs tracking-widest">Realização</h4>
-              <p className="text-sm text-zinc-400">
-                UFCG - Universidade Federal de Campina Grande<br />
-                PROPEX - Pró-Reitoria de Pesquisa e Extensão
-              </p>
-              <p className="text-xs text-zinc-500 mt-4">
-                © 2026 PVS UFCG. Todos os direitos reservados.
-              </p>
-            </div>
-          </div>
-        </footer>
+    {/* Coluna 3: Contato/UFCG */}
+    <div className="space-y-4">
+      {/* Mudança: text-zinc-100 para text-white */}
+      <h4 className="font-bold text-white uppercase text-xs tracking-widest">Realização</h4>
+      {/* Mudança: text-zinc-400 para text-blue-100 */}
+      <p className="text-sm text-blue-100">
+        UFCG - Universidade Federal de Campina Grande<br />
+        PROPEX - Pró-Reitoria de Pesquisa e Extensão
+      </p>
+      {/* Mudança: text-zinc-500 para text-blue-200 */}
+      <p className="text-xs text-blue-200 mt-4">
+        © 2026 PVS UFCG. Todos os direitos reservados.
+      </p>
+    </div>
+  </div>
+</footer>
       </body>
     </html>
   );
