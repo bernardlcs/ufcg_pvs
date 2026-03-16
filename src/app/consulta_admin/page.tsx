@@ -120,6 +120,17 @@ export default function ConsultaAdminPage() {
                 />
               </div>
               <div>
+                <label className="block text-xs font-bold text-zinc-400 uppercase mb-1">Sorteado</label>
+                <input 
+                  className="w-full p-2 bg-zinc-50 border border-zinc-200 rounded-lg text-sm"
+                  value={c.sorteado}
+                  onChange={(e) => {
+                    const newResultados = resultados.map(item => item.id === c.id ? {...item, sorteado: e.target.value} : item);
+                    setResultados(newResultados);
+                  }}
+                />
+              </div>
+              <div>
                 <label className="block text-xs font-bold text-zinc-400 uppercase mb-1">Situação</label>
                 <select 
                   className="w-full p-2 bg-zinc-50 border border-zinc-200 rounded-lg text-sm"
